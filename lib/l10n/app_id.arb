@@ -1,0 +1,23 @@
+{
+    "@@locale": "id",
+    "language": "Indonesia",
+    "lblShrimpPrice": "Harga Udang",
+    "lblShrimpNews": "Kabar Udang",
+    "lblDisease": "Penyakit",
+    "lblTryOtherFeatures": "Coba Fitur Lainnya",
+    "lblLatestPrice": "Harga terbaru",
+    "lblVerified": "Terverifikasi",
+    "lblUnverified": "belum terverifikasi",
+    "lblSeeDetails": "Lihat Detail",
+    "lblErrorFetchingData": "Terjadi kesalahan saat mengambil data.",
+    "lblEmptyData": "Data yang kamu cari saat ini belum tersedia.",
+    "lblCityOrDistrict": "Kota / Kabupaten",
+    "lblSearch": "Cari",
+    "lblClose": "Tutup",
+    "lblContact": "Kontak",
+    "lblCall": "Hubungi",
+    "lblNotes": "Catatan",
+    "lblPriceList": "Daftar Harga",
+    "lblLatestNews": "Kabar Terbaru",
+    "lblDiseaseList": "Daftar Penyakit"
+}

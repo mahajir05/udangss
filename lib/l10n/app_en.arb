@@ -1,0 +1,23 @@
+{
+    "@@locale": "en",
+    "language": "English",
+    "lblShrimpPrice": "Shrimp Price",
+    "lblShrimpNews": "Shrimp News",
+    "lblDisease": "Disease",
+    "lblTryOtherFeatures": "Try Other Features",
+    "lblLatestPrice": "Latest prices",
+    "lblVerified": "Verified",
+    "lblUnverified": "Unverified",
+    "lblSeeDetails": "See Details",
+    "lblErrorFetchingData": "An error occurred when fetching the data.",
+    "lblEmptyData": "The data you are looking for is not currently available.",
+    "lblCityOrDistrict": "City / District",
+    "lblSearch": "Search",
+    "lblClose": "Close",
+    "lblContact": "Contact",
+    "lblCall": "Call",
+    "lblNotes": "Notes",
+    "lblPriceList": "Price List",
+    "lblLatestNews": "Latest News",
+    "lblDiseaseList": "Disease List"
+}
