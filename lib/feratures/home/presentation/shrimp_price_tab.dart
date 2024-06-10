@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -145,7 +146,7 @@ class _ShrimpPriceTabState extends State<ShrimpPriceTab> {
                             padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 8),
                             child: LatestPriceContainer(
                               shrimpPriceEntity: state.shrimpPrices[index],
-                              size: 100,
+                              size: state.size,
                               regionId: state.regionId,
                             ),
                           );
@@ -259,43 +260,52 @@ class _ShrimpPriceTabState extends State<ShrimpPriceTab> {
         mainAxisSize: MainAxisSize.max,
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
-          Container(
-            padding: const EdgeInsets.symmetric(horizontal: 16),
-            alignment: Alignment.centerLeft,
-            decoration: BoxDecoration(
-              color: clrBlue00,
-              borderRadius: const BorderRadius.horizontal(
-                left: Radius.circular(30),
+          GestureDetector(
+            onTap: () {
+              _sizeBottomSheet().then((value) {
+                if (value != null) {
+                  context.read<ShrimpPricesCubit>().updateSize(value);
+                }
+              });
+            },
+            child: Container(
+              padding: const EdgeInsets.symmetric(horizontal: 16),
+              alignment: Alignment.centerLeft,
+              decoration: BoxDecoration(
+                color: clrBlue00,
+                borderRadius: const BorderRadius.horizontal(
+                  left: Radius.circular(30),
+                ),
               ),
-            ),
-            child: Row(
-              children: [
-                const Icon(
-                  Icons.balance,
-                  color: Colors.white,
-                  size: 24,
-                ),
-                const SizedBox(width: 8),
-                Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Text(
-                      "Size",
-                      style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                            color: Colors.white,
-                          ),
-                    ),
-                    Text(
-                      "ALL",
-                      style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                            color: Colors.white,
-                            fontWeight: FontWeight.w700,
-                          ),
-                    ),
-                  ],
-                ),
-                const SizedBox(width: 16),
-              ],
+              child: Row(
+                children: [
+                  const Icon(
+                    Icons.balance,
+                    color: Colors.white,
+                    size: 24,
+                  ),
+                  const SizedBox(width: 8),
+                  Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Text(
+                        "Size",
+                        style: Theme.of(context).textTheme.bodySmall?.copyWith(
+                              color: Colors.white,
+                            ),
+                      ),
+                      Text(
+                        "${context.watch<ShrimpPricesCubit>().state.size}",
+                        style: Theme.of(context).textTheme.bodyMedium?.copyWith(
+                              color: Colors.white,
+                              fontWeight: FontWeight.w700,
+                            ),
+                      ),
+                    ],
+                  ),
+                  const SizedBox(width: 16),
+                ],
+              ),
             ),
           ),
           Expanded(
@@ -352,6 +362,61 @@ class _ShrimpPriceTabState extends State<ShrimpPriceTab> {
           ),
         ],
       ),
+    );
+  }
+
+  Future<int?> _sizeBottomSheet() {
+    List<int> size = List.generate(21, (index) => index * 10);
+    size.removeRange(0, 2);
+    return showModalBottomSheet(
+      context: context,
+      isScrollControlled: true,
+      backgroundColor: clrWhite,
+      builder: (context) {
+        return Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 16),
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 8),
+                child: Text(
+                  "Size",
+                  style: Theme.of(context).textTheme.titleMedium,
+                ),
+              ),
+              const SizedBox(height: 8),
+              SizedBox(
+                height: 40,
+                child: ListView(
+                  scrollDirection: Axis.horizontal,
+                  shrinkWrap: true,
+                  children: size
+                      .map(
+                        (e) => GestureDetector(
+                          onTap: () {
+                            context.pop(e);
+                          },
+                          child: Container(
+                            margin: const EdgeInsets.symmetric(horizontal: 8),
+                            padding: const EdgeInsets.symmetric(horizontal: 8),
+                            decoration: BoxDecoration(
+                              border: Border.all(),
+                              borderRadius: BorderRadius.circular(4),
+                            ),
+                            alignment: Alignment.center,
+                            child: Text("$e"),
+                          ),
+                        ),
+                      )
+                      .toList(),
+                ),
+              )
+            ],
+          ),
+        );
+      },
     );
   }
 

@@ -100,7 +100,7 @@ class LatestPriceContainer extends StatelessWidget {
                           ),
                     ),
                     Text(
-                      "${shrimpPriceEntity?.currencyId} ${(shrimpPriceEntity?.size['size_$size'] as int?)?.toIdr()}",
+                      "${shrimpPriceEntity?.currencyId} ${(shrimpPriceEntity?.size['size_$size'] as int?)?.toIdr() ?? "-"}",
                       style: const TextStyle(
                         fontSize: 22,
                         fontWeight: FontWeight.w900,

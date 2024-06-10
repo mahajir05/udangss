@@ -32,4 +32,8 @@ class ShrimpPricesCubit extends Cubit<ShrimpPricesState> {
       regionId: regionId,
     ));
   }
+
+  void updateSize(int? size) {
+    emit(state.copyWith(size: size));
+  }
 }
